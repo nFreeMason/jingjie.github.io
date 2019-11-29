@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="专注于 MySQL、PHP、Elasticsearch、LNMP、Redis">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/jingjie.github.io/img/favicon.ico">
+
+    <title>
+        
+        Laravel job 进程管理工具 Supervisor - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/jingjie.github.io/css/aircloud.css">
+    <link rel="stylesheet" href="/jingjie.github.io/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/jingjie.github.io/images/tong.jpg" />
+        </div>
+        <div class="name">
+            <i>静节</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/jingjie.github.io/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#系统"><span class="toc-text">系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Supervisor-安装"><span class="toc-text">Supervisor 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Supervisor-配置"><span class="toc-text">Supervisor 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#启动-supervisor-项目配置文件"><span class="toc-text">启动 supervisor 项目配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Note"><span class="toc-text">Note</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Supervisor-命令"><span class="toc-text">Supervisor 命令</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Laravel job 进程管理工具 Supervisor
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-11-29 17:40:22</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><p>CentOS Linux release 7.4.1708<br>Homestead 4.15 Ubuntu 18.04 LTS</p>
+<h2 id="Supervisor-安装"><a href="#Supervisor-安装" class="headerlink" title="Supervisor 安装"></a>Supervisor 安装</h2><p>easy_install supervisor</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo easy_install supervisor</span><br></pre></td></tr></table></figure>
+
+<h2 id="Supervisor-配置"><a href="#Supervisor-配置" class="headerlink" title="Supervisor 配置"></a>Supervisor 配置</h2><p>1、生成新主配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo_supervisord_conf &gt; /etc/supervisord.conf // 需要 root 限制，sudo 不管用</span><br></pre></td></tr></table></figure>
+
+<p>2、修改 supervisord.conf 主配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">·</span><br><span class="line">·</span><br><span class="line">[unix_http_server]</span><br><span class="line">file=/var/run/supervisor.sock   ; the path to the socket file</span><br><span class="line">·</span><br><span class="line">·</span><br><span class="line">[supervisorctl]</span><br><span class="line">serverurl=unix:///var/run/supervisor.sock ; use a unix:// URL  for a unix socket</span><br><span class="line">·</span><br><span class="line">·</span><br><span class="line">[supervisord]</span><br><span class="line">logfile=/var/log/supervisord.log ; main log file; default $CWD/supervisord.log</span><br><span class="line">·</span><br><span class="line">·</span><br><span class="line">pidfile=/var/run/supervisord.pid ; supervisord pidfile; default supervisord.pid</span><br><span class="line">·</span><br><span class="line">·</span><br><span class="line">[include]</span><br><span class="line">files = /etc/supervisor/*.conf</span><br></pre></td></tr></table></figure>
+
+<p>3、启动 supervisor（确保9001端口未被占用）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo supervisord -c /etc/supervisord.conf</span><br></pre></td></tr></table></figure>
+
+<p>4、创建第二步对应的文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo touch  /var/run/supervisor.sock</span><br><span class="line">sudo chmod 777 /var/run/supervisor.sock</span><br><span class="line">sudo touch /var/log/supervisord.log  // 已经存在再次创建也没影响</span><br><span class="line">sudo chmod 777 /run</span><br><span class="line">sudo chmod 777 /var/log</span><br></pre></td></tr></table></figure>
+
+<p>5、创建 supervisor 项目配置文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 查看 /etc/supervisord.conf 文件</span><br><span class="line">[include]</span><br><span class="line">files = /etc/supervisor/*.conf // 这个路径放置项目对应的 supervisor 配置文件</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 在 /etc/supervisor/ 目录下创建以 laravel-worker.conf配置文件（以 .conf 结尾即可)，内容如下</span><br><span class="line">[program:laravel-worker]</span><br><span class="line">process_name=%(program_name)s_%(process_num)02d</span><br><span class="line">command=php /data/www/laravel/artisan queue:work --sleep=3 --tries=3</span><br><span class="line">autostart=true</span><br><span class="line">autorestart=true</span><br><span class="line">user=vagrant</span><br><span class="line">numprocs=8</span><br><span class="line">redirect_stderr=true</span><br><span class="line">stdout_logfile=/var/log/supervisor/laravel-queue.log // 配置文件路径</span><br></pre></td></tr></table></figure>
+
+<p>6、创建 supervisor 项目配置文件日志</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /var/log/supervisor</span><br><span class="line">sudo touch /var/log/supervisor/laravel-queue.log</span><br><span class="line">sudo chmod 777 /var/log/supervisor/laravel-queue.log</span><br><span class="line">sudo chown vagrant:vagrant /var/log/supervisor/laravel-queue.log</span><br><span class="line">sudo chown vagrant:vagrant /var/log/supervisor</span><br></pre></td></tr></table></figure>
+<h2 id="启动-supervisor-项目配置文件"><a href="#启动-supervisor-项目配置文件" class="headerlink" title="启动 supervisor 项目配置文件"></a>启动 supervisor 项目配置文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sudo supervisorctl reread   // 重新加载主配置文件</span><br><span class="line"></span><br><span class="line">sudo supervisorctl update // 创建项目配置文件进程组</span><br><span class="line"></span><br><span class="line">sudo supervisorctl start laravel-worker:*  // 启动监听进程</span><br><span class="line"></span><br><span class="line">sudo supervisorctl status  // 出现以下则成功</span><br><span class="line">laravel-worker:laravel-worker_00   RUNNING   pid 12425, uptime 0:04:52</span><br><span class="line">laravel-worker:laravel-worker_01   RUNNING   pid 12426, uptime 0:04:52</span><br><span class="line">laravel-worker:laravel-worker_02   RUNNING   pid 12427, uptime 0:04:52</span><br><span class="line">laravel-worker:laravel-worker_03   RUNNING   pid 12428, uptime 0:04:52</span><br><span class="line">laravel-worker:laravel-worker_04   RUNNING   pid 12429, uptime 0:04:52</span><br><span class="line">laravel-worker:laravel-worker_05   RUNNING   pid 12430, uptime 0:04:52</span><br><span class="line">laravel-worker:laravel-worker_06   RUNNING   pid 12431, uptime 0:04:52</span><br><span class="line">laravel-worker:laravel-worker_07   RUNNING   pid 12432, uptime 0:04:52</span><br></pre></td></tr></table></figure>
+
+<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><p>Laravel Job 代码修改后，需要重启 supervisor 才会生效</p>
+<h2 id="Supervisor-命令"><a href="#Supervisor-命令" class="headerlink" title="Supervisor 命令"></a>Supervisor 命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo supervisorctl status</span><br><span class="line">sudo supervisorctl stop usercenter</span><br><span class="line">sudo supervisorctl stop all   //  停止所有</span><br><span class="line">sudo supervisorctl start usercenter</span><br><span class="line">sudo supervisorctl restart usercenter</span><br><span class="line">sudo supervisorctl reread</span><br><span class="line">sudo supervisorctl update</span><br><span class="line">sudo supervisorctl  // 进入 cli</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://supervisord.org/running.html" target="_blank" rel="noopener">官网</a>：<a href="http://supervisord.org/running.html" target="_blank" rel="noopener">http://supervisord.org/running.html</a></p>
+<p><a href="https://learnku.com/laravel/t/3592/using-supervisor-to-manage-laravel-queue-processes?#reply73153" target="_blank" rel="noopener">原文连接</a>：<a href="https://learnku.com/laravel/t/3592/using-supervisor-to-manage-laravel-queue-processes?#reply73153" target="_blank" rel="noopener">https://learnku.com/laravel/t/3592/using-supervisor-to-manage-laravel-queue-processes?#reply73153</a></p>
+<p><a href="https://blog.tanteng.me/2017/01/supervisor-laravel-queue/" target="_blank" rel="noopener">参考连接</a>：<a href="https://blog.tanteng.me/2017/01/supervisor-laravel-queue" target="_blank" rel="noopener">https://blog.tanteng.me/2017/01/supervisor-laravel-queue</a></p>
+<p><a href="https://blog.csdn.net/qq_28885149/article/details/79364685" target="_blank" rel="noopener">参考连接</a><a href="https://blog.csdn.net/qq_28885149/article/details/79364685" target="_blank" rel="noopener">https://blog.csdn.net/qq_28885149/article/details/79364685</a></p>
+<p><a href="http://www.cnblogs.com/lemon-flm/articles/9283664.html" target="_blank" rel="noopener">supervisor Web管理界面与开房自启动</a>：<a href="http://www.cnblogs.com/lemon-flm/articles/9283664.html" target="_blank" rel="noopener">http://www.cnblogs.com/lemon-flm/articles/9283664.html</a></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/nFreeMason">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/jingjie.github.io/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/jingjie.github.io/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

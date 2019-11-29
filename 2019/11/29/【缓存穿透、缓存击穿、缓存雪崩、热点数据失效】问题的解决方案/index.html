@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="专注于 MySQL、PHP、Elasticsearch、LNMP、Redis">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/jingjie.github.io/img/favicon.ico">
+
+    <title>
+        
+        【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/jingjie.github.io/css/aircloud.css">
+    <link rel="stylesheet" href="/jingjie.github.io/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/jingjie.github.io/images/tong.jpg" />
+        </div>
+        <div class="name">
+            <i>静节</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/jingjie.github.io/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#阿里一面：关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案"><span class="toc-text">阿里一面：关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1、前言"><span class="toc-text">1、前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、缓存穿透"><span class="toc-text">2、缓存穿透</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-什么是缓存穿透"><span class="toc-text">2.1 什么是缓存穿透</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-穿透带来的问题"><span class="toc-text">2.2 穿透带来的问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-解决方案"><span class="toc-text">2.3 解决方案</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-如何选择"><span class="toc-text">2.4 如何选择</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、缓存击穿"><span class="toc-text">3、缓存击穿</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-1-什么是击穿"><span class="toc-text">3.1 什么是击穿</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-2-会带来什么问题"><span class="toc-text">3.2 会带来什么问题</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-3-如何解决"><span class="toc-text">3.3 如何解决</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、缓存雪崩"><span class="toc-text">4、缓存雪崩</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1-什么是缓存雪崩"><span class="toc-text">4.1 什么是缓存雪崩</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-解决方案"><span class="toc-text">4.2 解决方案</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、解决热点数据集中失效问题"><span class="toc-text">5、解决热点数据集中失效问题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#5-1-解决方案"><span class="toc-text">5.1 解决方案</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-11-29 17:45:42</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h3 id="阿里一面：关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案"><a href="#阿里一面：关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案" class="headerlink" title="阿里一面：关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案"></a>阿里一面：关于【缓存穿透、缓存击穿、缓存雪崩、热点数据失效】问题的解决方案</h3><p>来自：石杉的架构笔记</p>
+<h3 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h3><p>昨天晚上接到阿里的电面电话，过程中就问到了关于缓存相关的问题。</p>
+<p>虽然以前接触过，多多少少了解了一些。但是之前自己并没有好好记录这些内容，在真正面试的时候，并没有回答得出来。今天记录一下，长长记性。</p>
+<p>在我们的平常的项目中多多少少都会使用到缓存，因为一些数据我们没有必要每次查询的时候都去查询到数据库。</p>
+<p>特别是高 QPS 的系统，每次都去查询数据库，对于你的数据库来说将是灾难。</p>
+<p>今天我们不牵涉多级缓存的知识，就把系统使用到的缓存方案，不管是一级还是多级的都统称为缓存，主要是为了讲述使用缓存的时候可能会遇到的一些问题以及一些解决办法。</p>
+<p>当我们查询一条数据时，先去查询缓存，如果缓存有就直接返回，如果没有就去查询数据库，然后返回。这种情况下就可能会出现一些现象。</p>
+<h3 id="2、缓存穿透"><a href="#2、缓存穿透" class="headerlink" title="2、缓存穿透"></a>2、缓存穿透</h3><h5 id="2-1-什么是缓存穿透"><a href="#2-1-什么是缓存穿透" class="headerlink" title="2.1 什么是缓存穿透"></a>2.1 什么是缓存穿透</h5><p>正常情况下，我们去查询数据都是存在。</p>
+<p>那么请求去查询一条压根儿数据库中根本就不存在的数据，也就是缓存和数据库都查询不到这条数据，但是请求每次都会打到数据库上面去。</p>
+<p>这种查询不存在数据的现象我们称为缓存穿透。</p>
+<h5 id="2-2-穿透带来的问题"><a href="#2-2-穿透带来的问题" class="headerlink" title="2.2 穿透带来的问题"></a>2.2 穿透带来的问题</h5><p>试想一下，如果有黑客会对你的系统进行攻击，拿一个不存在的id 去查询数据，会产生大量的请求到数据库去查询。可能会导致你的数据库由于压力过大而宕掉。</p>
+<h5 id="2-3-解决方案"><a href="#2-3-解决方案" class="headerlink" title="2.3 解决方案"></a>2.3 解决方案</h5><ul>
+<li><p>1、缓存空值</p>
+<blockquote>
+<p>之所以会发生穿透，就是因为缓存中没有存储这些空数据的 key。从而导致每次查询都到数据库去了。</p>
+</blockquote>
+<blockquote>
+<p>那么我们就可以为这些 key 对应的值设置为 null 丢到缓存里面去。后面再出现查询这个 key 的请求的时候，直接返回 null 。</p>
+</blockquote>
+<blockquote>
+<p>这样，就不用在到数据库中去走一圈了，但是别忘了设置过期时间。</p>
+</blockquote>
+</li>
+<li><p>2、BloomFilter （布隆过滤器）</p>
+<blockquote>
+<p>BloomFilter 类似于一个hbase set 用来判断某个元素（key）是否存在于某个集合中。</p>
+</blockquote>
+<blockquote>
+<p>这种方式在大数据场景应用比较多，比如 Hbase 中使用它去判断数据是否在磁盘上。还有在爬虫场景判断url 是否已经被爬取过。</p>
+</blockquote>
+<blockquote>
+<p>这种方案可以加在第一种方案中，在缓存之前在加一层 BloomFilter ，在查询的时候先去 BloomFilter 去查询 key 是否存在，如果不存在就直接返回，存在再走查缓存 -&gt; 查 DB。</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="2-4-如何选择"><a href="#2-4-如何选择" class="headerlink" title="2.4 如何选择"></a>2.4 如何选择</h5><p>针对于一些恶意攻击，攻击带过来的大量 key 是不存在的，那么我们采用第一种方案就会缓存大量不存在 key 的数据。</p>
+<p>此时我们采用第一种方案就不合适了，我们完全可以先对使用第二种方案进行过滤掉这些 key。</p>
+<p>针对这种 key 异常多、请求重复率比较低的数据，我们就没有必要进行缓存，使用第二种方案直接过滤掉。</p>
+<p>而对于空数据的 key 有限的，重复率比较高的，我们则可以采用第一种方式进行缓存</p>
+<h3 id="3、缓存击穿"><a href="#3、缓存击穿" class="headerlink" title="3、缓存击穿"></a>3、缓存击穿</h3><h5 id="3-1-什么是击穿"><a href="#3-1-什么是击穿" class="headerlink" title="3.1 什么是击穿"></a>3.1 什么是击穿</h5><p>缓存击穿是我们可能遇到的第二个使用缓存方案可能遇到的问题。</p>
+<p>在平常高并发的系统中，大量的请求同时查询一个 key 时，此时这个 key 正好失效了，就会导致大量的请求都打到数据库上面去。这种现象我们称为 <strong>缓存击穿</strong>。</p>
+<h5 id="3-2-会带来什么问题"><a href="#3-2-会带来什么问题" class="headerlink" title="3.2 会带来什么问题"></a>3.2 会带来什么问题</h5><p>会造成某一时刻数据库请求量过大，压力剧增。</p>
+<h5 id="3-3-如何解决"><a href="#3-3-如何解决" class="headerlink" title="3.3 如何解决"></a>3.3 如何解决</h5><p>上面的现象是多个线程同时去查询数据库的这条数据，那么我们可以在第一个查询数据的请求上使用一个 互斥锁来锁住它。</p>
+<p>其他的线程走到这一步拿不到锁就等着，等第一个线程查询到了数据，然后做缓存。后面的线程进来发现已经有缓存了，就直接走缓存。</p>
+<h3 id="4、缓存雪崩"><a href="#4、缓存雪崩" class="headerlink" title="4、缓存雪崩"></a>4、缓存雪崩</h3><h5 id="4-1-什么是缓存雪崩"><a href="#4-1-什么是缓存雪崩" class="headerlink" title="4.1 什么是缓存雪崩"></a>4.1 什么是缓存雪崩</h5><p>缓存雪崩的情况是说，当某一时刻发生大规模的缓存失效的情况，比如你的缓存服务宕机了，会有大量的请求进来直接打到DB上面。结果就是DB 称不住，挂掉</p>
+<h5 id="4-2-解决方案"><a href="#4-2-解决方案" class="headerlink" title="4.2 解决方案"></a>4.2 解决方案</h5><ul>
+<li><p>1、事前： 使用集群缓存，保证缓存服务的高可用</p>
+<blockquote>
+<p>这种方案就是在发生雪崩前对缓存集群实现高可用，如果是使用 Redis，可以使用 主从+哨兵 ，Redis Cluster 来避免 Redis 全盘崩溃的情况。</p>
+</blockquote>
+</li>
+<li><p>2、事中：ehcache 本地缓存 + Hystrix 限流 &amp; 降级,避免 MySQL 被打死</p>
+<blockquote>
+<p>使用 ehcache 本地缓存的目的也是考虑在 Redis Cluster 完全不可用的时候，ehcache 本地缓存还能够支撑一阵。</p>
+</blockquote>
+<blockquote>
+<p>使用 Hystrix进行限流 &amp; 降级 ，比如一秒来了5000个请求，我们可以设置假设只能有一秒 2000个请求能通过这个组件，那么其他剩余的 3000 请求就会走限流逻辑。</p>
+</blockquote>
+<blockquote>
+<p>然后去调用我们自己开发的降级组件（降级），比如设置的一些默认值呀之类的。以此来保护最后的 MySQL 不会被大量的请求给打死。</p>
+</blockquote>
+</li>
+<li><p>3、事后：开启Redis持久化机制，尽快恢复缓存集群</p>
+<p>  一旦重启，就能从磁盘上自动加载数据恢复内存中的数据。</p>
+</li>
+</ul>
+<h3 id="5、解决热点数据集中失效问题"><a href="#5、解决热点数据集中失效问题" class="headerlink" title="5、解决热点数据集中失效问题"></a>5、解决热点数据集中失效问题</h3><p>我们在设置缓存的时候，一般会给缓存设置一个失效时间，过了这个时间，缓存就失效了。</p>
+<p>对于一些热点的数据来说，当缓存失效以后会存在大量的请求过来，然后打到数据库去，从而可能导致数据库崩溃的情况。</p>
+<h5 id="5-1-解决方案"><a href="#5-1-解决方案" class="headerlink" title="5.1 解决方案"></a>5.1 解决方案</h5><ul>
+<li><p>1、设置不同的失效时间</p>
+<blockquote>
+<p>为了避免这些热点的数据集中失效，那么我们在设置缓存过期时间的时候，我们让他们失效的时间错开。</p>
+</blockquote>
+<blockquote>
+<p>比如在一个基础的时间上加上或者减去一个范围内的随机值。</p>
+</blockquote>
+</li>
+<li><p>2、互斥锁</p>
+<blockquote>
+<p>结合上面的击穿的情况，在第一个请求去查询数据库的时候对他加一个互斥锁，其余的查询请求都会被阻塞住，直到锁被释放，从而保护数据库。</p>
+</blockquote>
+<blockquote>
+<p>但是也是由于它会阻塞其他的线程，此时系统吞吐量会下降。需要结合实际的业务去考虑是否要这么做。</p>
+</blockquote>
+</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/nFreeMason">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/jingjie.github.io/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/jingjie.github.io/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

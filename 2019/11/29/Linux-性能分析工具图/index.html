@@ -11,7 +11,7 @@
 
     <title>
         
-        Test - undefined
+        Linux 性能分析工具图 - undefined
         
     </title>
 
@@ -59,7 +59,7 @@
                     <span>主页</span>
                 </a>
             </li>
-            <li  class=active >
+            <li >
                 <a href="/jingjie.github.io/tags">
                     <i class="iconfont icon-biaoqian1"></i>
                     <span>标签</span>
@@ -88,6 +88,10 @@
         </ul>
     </div>
     
+        <div id="toc" class="toc-article">
+    
+</div>
+    
 </div>
 
 
@@ -111,36 +115,39 @@
     
     <div class="index-middle">
         <!-- Main Content -->
-        <div id='tag_cloud' class="tags">
-    
-    <a href="#思想" title="思想" rel="1">思想</a>
-    
-</div>
-
-<!-- 标签列表 -->
+        
 
 
-<div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="思想">
-                    <span class="tag-text">思想</span>
-                </span>
-    
-    <!-- <li class="listing-item">
-    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-    </li> -->
-    <div class="post-preview">
-        <a href="/jingjie.github.io/2019/11/29/对象/">
-            <h2 class="post-title">
-                什么是抽象
-            </h2>
-            
-        </a>
-        <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+<div class="post-container">
+    <div class="post-title">
+        Linux 性能分析工具图
     </div>
-    
-</div>
 
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-11-29 17:43:26</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p>这个图是 Linux 性能分析最重要的参考资料之一，它告诉你 Linux 不同子系统出现性能问题，应该使用什么样的工具来观察与分析，比如 IO 性能问题，可能参考 IO 子系统，可以使用 iostat、iotop、blktrace等工具分析磁盘 IO 的瓶颈</p>
+<p><img src="https://cdn.learnku.com/uploads/images/201902/26/23047/ZFqUsfY97n.png!large" alt="file"></p>
+<p><img src="https://cdn.learnku.com/uploads/images/201902/26/23047/KjnB62oumY.png!large" alt="file"></p>
+<p><img src="https://cdn.learnku.com/uploads/images/201902/26/23047/lSPhVAMDuI.png!large" alt="file"></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
 
     </div>
 </div>
@@ -188,7 +195,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/jingjie.github.io/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/jingjie.github.io/js/index.js"></script>

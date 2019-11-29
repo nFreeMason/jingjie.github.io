@@ -11,7 +11,7 @@
 
     <title>
         
-        Test - undefined
+        MySQL SQL 查询执行流程 - undefined
         
     </title>
 
@@ -59,7 +59,7 @@
                     <span>主页</span>
                 </a>
             </li>
-            <li  class=active >
+            <li >
                 <a href="/jingjie.github.io/tags">
                     <i class="iconfont icon-biaoqian1"></i>
                     <span>标签</span>
@@ -88,6 +88,10 @@
         </ul>
     </div>
     
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#流程图"><span class="toc-text">流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流程解释"><span class="toc-text">流程解释</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、连接器"><span class="toc-text">1、连接器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、查询缓存"><span class="toc-text">2、查询缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、分析器"><span class="toc-text">3、分析器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、优化器"><span class="toc-text">4、优化器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、执行器"><span class="toc-text">5、执行器</span></a></li></ol></li></ol>
+</div>
+    
 </div>
 
 
@@ -111,36 +115,42 @@
     
     <div class="index-middle">
         <!-- Main Content -->
-        <div id='tag_cloud' class="tags">
-    
-    <a href="#思想" title="思想" rel="1">思想</a>
-    
-</div>
-
-<!-- 标签列表 -->
+        
 
 
-<div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="思想">
-                    <span class="tag-text">思想</span>
-                </span>
-    
-    <!-- <li class="listing-item">
-    <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-    <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-    </li> -->
-    <div class="post-preview">
-        <a href="/jingjie.github.io/2019/11/29/对象/">
-            <h2 class="post-title">
-                什么是抽象
-            </h2>
-            
-        </a>
-        <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+<div class="post-container">
+    <div class="post-title">
+        MySQL SQL 查询执行流程
     </div>
-    
-</div>
 
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-11-29 17:48:36</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p>MySQL 大体可分为 server 层与 存储引擎</p>
+<h2 id="流程解释"><a href="#流程解释" class="headerlink" title="流程解释"></a>流程解释</h2><h4 id="1、连接器"><a href="#1、连接器" class="headerlink" title="1、连接器"></a>1、连接器</h4><p>管理连接，权限验证，当一个连接权限验证通过后，即使你使用管理员对这个用户的权限做了修改，对已经通过验证的接连也不会生效。只有新连接才会使用新的权限</p>
+<h3 id="2、查询缓存"><a href="#2、查询缓存" class="headerlink" title="2、查询缓存"></a>2、查询缓存</h3><p>命中则直接返回结果，缓存以 key=&gt;value 的形式储存，key 为 SQL 语句，value 为查询的结果，查询缓存当出现更新时，当前表的所有缓存将被清空。</p>
+<p><strong>Note：</strong>因查询缓存往往弊大于利 MySQL 8 及以上版本查询缓存已经被抛弃</p>
+<h3 id="3、分析器"><a href="#3、分析器" class="headerlink" title="3、分析器"></a>3、分析器</h3><p>对 SQL 进程词法语法分析，并验证表与查询的字段是否存在</p>
+<h3 id="4、优化器"><a href="#4、优化器" class="headerlink" title="4、优化器"></a>4、优化器</h3><p>对 SQL 进行索引选择</p>
+<h3 id="5、执行器"><a href="#5、执行器" class="headerlink" title="5、执行器"></a>5、执行器</h3><p>执行 SQL 语句，查询存储引擎，返回结果</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
 
     </div>
 </div>
@@ -188,7 +198,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/jingjie.github.io/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/jingjie.github.io/js/index.js"></script>
