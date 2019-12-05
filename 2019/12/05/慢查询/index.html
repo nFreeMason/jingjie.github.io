@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="专注于 MySQL、PHP、Elasticsearch、LNMP、Redis">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/jingjie.github.io/img/favicon.ico">
+
+    <title>
+        
+        慢查询 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/jingjie.github.io/css/aircloud.css">
+    <link rel="stylesheet" href="/jingjie.github.io/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/jingjie.github.io/images/tong.jpg" />
+        </div>
+        <div class="name">
+            <i>静节</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/jingjie.github.io/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#慢查询"><span class="toc-text">慢查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#01慢查询的影响"><span class="toc-text">01慢查询的影响</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#02查看慢查询"><span class="toc-text">02查看慢查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#03慢查询优化步骤"><span class="toc-text">03慢查询优化步骤</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#01-慢查询的影响"><span class="toc-text">01 慢查询的影响</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#为什么要关注慢查询？"><span class="toc-text">为什么要关注慢查询？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#02-查看慢查询"><span class="toc-text">02 查看慢查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#如何查看慢日志？"><span class="toc-text">如何查看慢日志？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#03-慢查询优化步骤"><span class="toc-text">03 慢查询优化步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#针对一个特定的慢sql如何优化？"><span class="toc-text">针对一个特定的慢sql如何优化？</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        慢查询
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-12-05 11:22:41</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="慢查询"><a href="#慢查询" class="headerlink" title="慢查询"></a>慢查询</h1><h5 id="01慢查询的影响"><a href="#01慢查询的影响" class="headerlink" title="01慢查询的影响"></a><a href="#influence">01慢查询的影响</a></h5><h5 id="02查看慢查询"><a href="#02查看慢查询" class="headerlink" title="02查看慢查询"></a><a href="#view">02查看慢查询</a></h5><h5 id="03慢查询优化步骤"><a href="#03慢查询优化步骤" class="headerlink" title="03慢查询优化步骤"></a><a href="#">03慢查询优化步骤</a></h5><h3 id="01-慢查询的影响"><a href="#01-慢查询的影响" class="headerlink" title="01 慢查询的影响"></a><span id="influence">01 慢查询的影响</span></h3><h5 id="为什么要关注慢查询？"><a href="#为什么要关注慢查询？" class="headerlink" title="为什么要关注慢查询？"></a>为什么要关注慢查询？</h5><p>之所以关注慢查询，是因为慢查询会导致以下影响：</p>
+<ul>
+<li>数据库 cpu 负载高</li>
+<li>IO 负载高导致服务器卡住，拖慢数据库性能</li>
+<li>Sql 执行计划不合适，执行耗时过长</li>
+<li>数据库锁的增多，影响正常的 DDL 和 DML 操作</li>
+</ul>
+<h3 id="02-查看慢查询"><a href="#02-查看慢查询" class="headerlink" title="02 查看慢查询"></a><span id="view">02 查看慢查询</span></h3><h5 id="如何查看慢日志？"><a href="#如何查看慢日志？" class="headerlink" title="如何查看慢日志？"></a>如何查看慢日志？</h5><p>查看慢查询日志，可以按照以下几步：</p>
+<ul>
+<li>查看 my.cnf 文件，通过 slow_query_log_file 参数定位慢查询日志的位置</li>
+<li>通过 vim 直接打开慢查询日志对其进行单条慢sql分析</li>
+<li>通过 mysqldumpslow 或 pt-query-digest 工具对慢查询日志进行汇总分析</li>
+</ul>
+<h3 id="03-慢查询优化步骤"><a href="#03-慢查询优化步骤" class="headerlink" title="03 慢查询优化步骤"></a><span id="view">03 慢查询优化步骤</span></h3><h5 id="针对一个特定的慢sql如何优化？"><a href="#针对一个特定的慢sql如何优化？" class="headerlink" title="针对一个特定的慢sql如何优化？"></a>针对一个特定的慢sql如何优化？</h5><p>针对特定的慢sql，主要要经过以下几步分析：</p>
+<ul>
+<li>查看 SQL 执行计划: explain sql</li>
+<li>查看表的索引: show index from tb_name</li>
+<li>查看表结构: show create table tb_name</li>
+<li>通过 profiling 看看 sql 耗时主要花在哪里？</li>
+<li>通过 Optimizer Trace 观察 sql 的执行过程，观察 sql 执行计划选取的依据</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/nFreeMason">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/jingjie.github.io/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/jingjie.github.io/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

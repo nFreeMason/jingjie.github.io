@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="专注于 MySQL、PHP、Elasticsearch、LNMP、Redis">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/jingjie.github.io/img/favicon.ico">
+
+    <title>
+        
+        my.conf - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/jingjie.github.io/css/aircloud.css">
+    <link rel="stylesheet" href="/jingjie.github.io/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/jingjie.github.io/images/tong.jpg" />
+        </div>
+        <div class="name">
+            <i>静节</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/jingjie.github.io/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL-技术参数解读和设置"><span class="toc-text">MySQL 技术参数解读和设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、back-log"><span class="toc-text">1、back_log</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参数含义"><span class="toc-text">参数含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取值范围"><span class="toc-text">取值范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐值"><span class="toc-text">推荐值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、binlog-error-action"><span class="toc-text">2、binlog_error_action</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参数含义-1"><span class="toc-text">参数含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取值范围-1"><span class="toc-text">取值范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐值-1"><span class="toc-text">推荐值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意-1"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、binlog-format"><span class="toc-text">3、binlog_format</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参数含义-2"><span class="toc-text">参数含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取值范围-2"><span class="toc-text">取值范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐值-2"><span class="toc-text">推荐值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意-2"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、lower-case-table-names"><span class="toc-text">4、lower_case_table_names</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参数含义-3"><span class="toc-text">参数含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取值范围-3"><span class="toc-text">取值范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐值-3"><span class="toc-text">推荐值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意-3"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、innodb-file-format"><span class="toc-text">5、innodb_file_format</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参数含义-4"><span class="toc-text">参数含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取值范围-4"><span class="toc-text">取值范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐值-4"><span class="toc-text">推荐值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意-4"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、max-binlog-size"><span class="toc-text">6、max_binlog_size</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参数含义-5"><span class="toc-text">参数含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取值范围-5"><span class="toc-text">取值范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐值-5"><span class="toc-text">推荐值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意-5"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7、innodb-log-file-size"><span class="toc-text">7、innodb_log_file_size</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参数含义-6"><span class="toc-text">参数含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取值范围-6"><span class="toc-text">取值范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐值-6"><span class="toc-text">推荐值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意-6"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8、innodb-log-files-in-group"><span class="toc-text">8、innodb_log_files_in_group</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参数含义-7"><span class="toc-text">参数含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取值范围-7"><span class="toc-text">取值范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐值-7"><span class="toc-text">推荐值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意-7"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9、relay-log-info-repository"><span class="toc-text">9、relay_log_info_repository</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参数含义-8"><span class="toc-text">参数含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取值范围-8"><span class="toc-text">取值范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐值-8"><span class="toc-text">推荐值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意-8"><span class="toc-text">注意</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10、relay-log-recovery"><span class="toc-text">10、relay_log_recovery</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#参数含义-9"><span class="toc-text">参数含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#取值范围-9"><span class="toc-text">取值范围</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推荐值-9"><span class="toc-text">推荐值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意-9"><span class="toc-text">注意</span></a></li></ol></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        my.conf
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-12-05 11:22:41</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p><a href="https://education.huaweicloud.com:8443/courses/course-v1:HuaweiX+CBUCNXD002+2018.5/courseware/248ca4b49f444c65af9c4c387ee0820e/c1449eabdd734057872f655685fc0b1c/?child=first" target="_blank" rel="noopener">来源华为云</a></p>
+<h2 id="MySQL-技术参数解读和设置"><a href="#MySQL-技术参数解读和设置" class="headerlink" title="MySQL 技术参数解读和设置"></a>MySQL 技术参数解读和设置</h2><h3 id="1、back-log"><a href="#1、back-log" class="headerlink" title="1、back_log"></a>1、back_log</h3><h4 id="参数含义"><a href="#参数含义" class="headerlink" title="参数含义"></a>参数含义</h4><blockquote>
+<p>MySQL每处理一个连接请求的时候都会对应的创建一个新线程，那么在主线程创建新线程期间，如果前端应用有大量的短连接进入到数据库，为了保证当前事务及MySQL本身的稳定性，MySQL不可能无限制的接受新连接进入请求队列。请求队列的大小就是由back_log控制，如果等待的连接数量超过back_log，则将不会接受新的连接请求，所以如果需要MySQL并发处理大量的短连接，需要提高此参数的大小</p>
+</blockquote>
+<h4 id="取值范围"><a href="#取值范围" class="headerlink" title="取值范围"></a>取值范围</h4><blockquote>
+<p>1–65535</p>
+</blockquote>
+<h4 id="推荐值"><a href="#推荐值" class="headerlink" title="推荐值"></a>推荐值</h4><blockquote>
+<p>600</p>
+</blockquote>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><blockquote>
+<p>该参数值不能超过MySQL服务器TCP/IP连接的侦听队列的大小。若超过则无效，查看当前系统的TCP/IP连接的侦听队列的大小命令：</p>
+</blockquote>
+<blockquote>
+<p><strong>cat /proc/sys/net/ipv4/tcp_max_syn_backlog</strong></p>
+</blockquote>
+<h3 id="2、binlog-error-action"><a href="#2、binlog-error-action" class="headerlink" title="2、binlog_error_action"></a>2、binlog_error_action</h3><h4 id="参数含义-1"><a href="#参数含义-1" class="headerlink" title="参数含义"></a>参数含义</h4><blockquote>
+<p>Binlog_error_action参数控制当不能写binlog时，mysql本身会怎样处理这个状态。设置binlog_error_action=ABORT_SERVER会使mysql在写binlog遇到错误时退出。在ABORT_SERVER模式下，binlog和从库都是安全的。binlog_error_action=IGNORE_ERROR，如果无法写入binlog，mysql会在error.log中记录相关错误信息并强制关闭binlog功能。这会使mysql在不记录binlog的模式下继续运行，导致从库无法继续获取到主库的binlog。</p>
+</blockquote>
+<h4 id="取值范围-1"><a href="#取值范围-1" class="headerlink" title="取值范围"></a>取值范围</h4><blockquote>
+<p>IGNORE_ERROR | ABORT_SERVER</p>
+</blockquote>
+<h4 id="推荐值-1"><a href="#推荐值-1" class="headerlink" title="推荐值"></a>推荐值</h4><blockquote>
+<p>ABORT_SERVER</p>
+</blockquote>
+<h4 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h4><h3 id="3、binlog-format"><a href="#3、binlog-format" class="headerlink" title="3、binlog_format"></a>3、binlog_format</h3><h4 id="参数含义-2"><a href="#参数含义-2" class="headerlink" title="参数含义"></a>参数含义</h4><blockquote>
+<p>该参数控制MySQL是以如何格式记录二进制日志Binlog的。STATEMENT（SBR）：Binlog记录的只是sql语句，日志量最少。ROW（RBR）：Binlog记录完成的数据变更记录，日志量最大，但是最安全的。MIXED（MBR）：MySQL根据一定的规则决定以何种格式记录binlog。在以下场景自动从STATEMENT格式转换为ROW格式。如：UUID(), UDF, AUTO_INCREMENT columns, LOAD_FILE(), USER(), CURRENT_USER(), or CURRENT_USER等等</p>
+</blockquote>
+<h4 id="取值范围-2"><a href="#取值范围-2" class="headerlink" title="取值范围"></a>取值范围</h4><blockquote>
+<p>ROW | MIXED | STATEMENT</p>
+</blockquote>
+<h4 id="推荐值-2"><a href="#推荐值-2" class="headerlink" title="推荐值"></a>推荐值</h4><blockquote>
+<p>ROW</p>
+</blockquote>
+<h4 id="注意-2"><a href="#注意-2" class="headerlink" title="注意"></a>注意</h4><h3 id="4、lower-case-table-names"><a href="#4、lower-case-table-names" class="headerlink" title="4、lower_case_table_names"></a>4、lower_case_table_names</h3><h4 id="参数含义-3"><a href="#参数含义-3" class="headerlink" title="参数含义"></a>参数含义</h4><blockquote>
+<p>lower_case_table_names=0 表名存储为给定的大小和比较是区分大小写的<br>lower_case_table_names = 1 表名存储在磁盘是小写的，但是比较的时候是不区分大小写<br>lower_case_table_names=2 表名存储为给定的大小写但是比较的时候是小写的<br>unix,linux下lower_case_table_names默认值为 0 .Windows下默认值是 1 .Mac OS X下默认值是 2</p>
+</blockquote>
+<h4 id="取值范围-3"><a href="#取值范围-3" class="headerlink" title="取值范围"></a>取值范围</h4><blockquote>
+<p>0 | 1</p>
+</blockquote>
+<h4 id="推荐值-3"><a href="#推荐值-3" class="headerlink" title="推荐值"></a>推荐值</h4><blockquote>
+<p>1</p>
+</blockquote>
+<h4 id="注意-3"><a href="#注意-3" class="headerlink" title="注意"></a>注意</h4><h3 id="5、innodb-file-format"><a href="#5、innodb-file-format" class="headerlink" title="5、innodb_file_format"></a>5、innodb_file_format</h3><h4 id="参数含义-4"><a href="#参数含义-4" class="headerlink" title="参数含义"></a>参数含义</h4><blockquote>
+<p>控制Innodb引擎的行存储机制。Innodb引擎还支持行数据压缩特性，不过前提是采用Barracuda行存储格式。表空间启用压缩的前提是innodb表空间文件存储格式修改成Barracuda，此外需要修改innodb_file_format_max= Barracuda</p>
+</blockquote>
+<h4 id="取值范围-4"><a href="#取值范围-4" class="headerlink" title="取值范围"></a>取值范围</h4><blockquote>
+<p>Antelope | Barracuda</p>
+</blockquote>
+<h4 id="推荐值-4"><a href="#推荐值-4" class="headerlink" title="推荐值"></a>推荐值</h4><blockquote>
+<p>Barracuda</p>
+</blockquote>
+<h4 id="注意-4"><a href="#注意-4" class="headerlink" title="注意"></a>注意</h4><h3 id="6、max-binlog-size"><a href="#6、max-binlog-size" class="headerlink" title="6、max_binlog_size"></a>6、max_binlog_size</h3><h4 id="参数含义-5"><a href="#参数含义-5" class="headerlink" title="参数含义"></a>参数含义</h4><blockquote>
+<p>控制单个Binlog日志大小，一旦达到该参数的限制，会产生新的binlog文件（一个binlog文件最大 1G）</p>
+</blockquote>
+<h4 id="取值范围-5"><a href="#取值范围-5" class="headerlink" title="取值范围"></a>取值范围</h4><blockquote>
+<p>4096–1073741824</p>
+</blockquote>
+<h4 id="推荐值-5"><a href="#推荐值-5" class="headerlink" title="推荐值"></a>推荐值</h4><blockquote>
+<p>512M</p>
+</blockquote>
+<h4 id="注意-5"><a href="#注意-5" class="headerlink" title="注意"></a>注意</h4><h3 id="7、innodb-log-file-size"><a href="#7、innodb-log-file-size" class="headerlink" title="7、innodb_log_file_size"></a>7、innodb_log_file_size</h3><h4 id="参数含义-6"><a href="#参数含义-6" class="headerlink" title="参数含义"></a>参数含义</h4><blockquote>
+<p>该参数控制Innodb事务日志文件的大小，日志写满后进行日志切换。所有日志的总大小不能超过512GB,即innodb_log_file_size * innodb_log_files_in_group的值不能大于512GB</p>
+</blockquote>
+<h4 id="取值范围-6"><a href="#取值范围-6" class="headerlink" title="取值范围"></a>取值范围</h4><blockquote>
+</blockquote>
+<h4 id="推荐值-6"><a href="#推荐值-6" class="headerlink" title="推荐值"></a>推荐值</h4><blockquote>
+<p>512M</p>
+</blockquote>
+<h4 id="注意-6"><a href="#注意-6" class="headerlink" title="注意"></a>注意</h4><h3 id="8、innodb-log-files-in-group"><a href="#8、innodb-log-files-in-group" class="headerlink" title="8、innodb_log_files_in_group"></a>8、innodb_log_files_in_group</h3><h4 id="参数含义-7"><a href="#参数含义-7" class="headerlink" title="参数含义"></a>参数含义</h4><blockquote>
+<p>控制Innodb事务日志的个数。如果设置的太小，遭遇事务高峰期，会产生大量的事务日志，频繁发生日志切换。当日志1写满需要切换日志2时，如果日志2中事务对应的脏数据未完成落盘，日志切换只能等待，严重影响mysql的性能。</p>
+</blockquote>
+<h4 id="取值范围-7"><a href="#取值范围-7" class="headerlink" title="取值范围"></a>取值范围</h4><blockquote>
+<p>2-100</p>
+</blockquote>
+<h4 id="推荐值-7"><a href="#推荐值-7" class="headerlink" title="推荐值"></a>推荐值</h4><blockquote>
+<p>2</p>
+</blockquote>
+<h4 id="注意-7"><a href="#注意-7" class="headerlink" title="注意"></a>注意</h4><h3 id="9、relay-log-info-repository"><a href="#9、relay-log-info-repository" class="headerlink" title="9、relay_log_info_repository"></a>9、relay_log_info_repository</h3><h4 id="参数含义-8"><a href="#参数含义-8" class="headerlink" title="参数含义"></a>参数含义</h4><blockquote>
+<p>控制从库的重做信息以何种方式保存。设置为file，sql线程先提交事务，再记录relay.info文件。假如在relay.info刷盘那一刻宕机，relay.info文件中没有记录，那么从库重启mysql进程后们就会执行两边同样的sql，导致同步复制报错。设置为table，sql线程执行完事务后，立即更新slave_relay_log_info表，如果在更新过程中宕机，则事务会回滚，slave_relay_log_info表并不会记录同步的点，下次重新同步时，从之前的pos点再次执行。</p>
+</blockquote>
+<h4 id="取值范围-8"><a href="#取值范围-8" class="headerlink" title="取值范围"></a>取值范围</h4><blockquote>
+<p>table|file</p>
+</blockquote>
+<h4 id="推荐值-8"><a href="#推荐值-8" class="headerlink" title="推荐值"></a>推荐值</h4><blockquote>
+<p>table</p>
+</blockquote>
+<h4 id="注意-8"><a href="#注意-8" class="headerlink" title="注意"></a>注意</h4><h3 id="10、relay-log-recovery"><a href="#10、relay-log-recovery" class="headerlink" title="10、relay_log_recovery"></a>10、relay_log_recovery</h3><h4 id="参数含义-9"><a href="#参数含义-9" class="headerlink" title="参数含义"></a>参数含义</h4><blockquote>
+<p>Slave宕机重启后，对relay-log的处理方式。当slave宕机后，假如relay_log损坏，导致一部分中继日志没有处理，则自动放弃所有未执行的relay-log，并且重新从MASTER上索取日志，保证relay的完整性。默认情况下该功能是关闭的。建议在从库上开启次功能</p>
+</blockquote>
+<h4 id="取值范围-9"><a href="#取值范围-9" class="headerlink" title="取值范围"></a>取值范围</h4><blockquote>
+<p>ON | OFF</p>
+</blockquote>
+<h4 id="推荐值-9"><a href="#推荐值-9" class="headerlink" title="推荐值"></a>推荐值</h4><blockquote>
+<p>ON</p>
+</blockquote>
+<h4 id="注意-9"><a href="#注意-9" class="headerlink" title="注意"></a>注意</h4>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/nFreeMason">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/jingjie.github.io/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/jingjie.github.io/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

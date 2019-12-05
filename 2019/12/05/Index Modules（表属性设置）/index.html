@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="专注于 MySQL、PHP、Elasticsearch、LNMP、Redis">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/jingjie.github.io/img/favicon.ico">
+
+    <title>
+        
+        Index Modules（表属性设置） - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/jingjie.github.io/css/aircloud.css">
+    <link rel="stylesheet" href="/jingjie.github.io/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/jingjie.github.io/images/tong.jpg" />
+        </div>
+        <div class="name">
+            <i>静节</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/jingjie.github.io/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Index-Settings-详情"><span class="toc-text">Index Settings 详情</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#静态属性设置（static-index-settings）"><span class="toc-text">静态属性设置（static index settings）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态属性设置（Dynamic-index-settings）"><span class="toc-text">动态属性设置（Dynamic index settings）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它可在-settings-设置的属性"><span class="toc-text">其它可在 settings 设置的属性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Analysis（分词器）"><span class="toc-text">Analysis（分词器）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Index-shard-allocation"><span class="toc-text">Index shard allocation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mapping"><span class="toc-text">Mapping</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Merging"><span class="toc-text">Merging</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Similarities"><span class="toc-text">Similarities</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Slowlog"><span class="toc-text">Slowlog</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Store"><span class="toc-text">Store</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Translog"><span class="toc-text">Translog</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#History-retention"><span class="toc-text">History retention</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#X-Pack-index-settings-最后一行"><span class="toc-text">X-Pack index settings 最后一行</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        Index Modules（表属性设置）
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-12-05 11:22:41</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p>版本：7.5</p>
+<h1 id="Index-Settings-详情"><a href="#Index-Settings-详情" class="headerlink" title="Index Settings 详情"></a>Index Settings <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.5/index-modules.html#_static_index_settings" target="_blank" rel="noopener">详情</a></h1><p>表的属性设置按是否可更改可分为：</p>
+<ul>
+<li><p>(static) 静态</p>
+<ul>
+<li>创建后不能更改，它们只能在创建索引时或在关闭的索引上设置。</li>
+</ul>
+</li>
+<li><p>(dynamic) 动态</p>
+<ul>
+<li>创建后，可更改，可以使用 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.5/indices-update-settings.html" target="_blank" rel="noopener">update-index-settings</a> API 动态的在活动索引上更改它们。</li>
+</ul>
+</li>
+</ul>
+<p><strong>WARNING：</strong></p>
+<p>更改关闭索引上的静态或动态索引设置可能导致错误的设置，如果不删除和重新创建索引，就无法纠正这些错误。</p>
+<h2 id="静态属性设置（static-index-settings）"><a href="#静态属性设置（static-index-settings）" class="headerlink" title="静态属性设置（static index settings）"></a>静态属性设置（static index settings）</h2><p>下面是与任何特定索引模块无关的所有静态索引设置的列表</p>
+<table>
+<thead>
+<tr>
+<th>属性名/参数名</th>
+<th>中文名</th>
+<th>值类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>index.number_of_shards</td>
+<td>分片数量</td>
+<td>int</td>
+<td>1</td>
+<td>分片数量，<strong>默认 1</strong>，些设置只能在创建时设置。它不能在封闭（关闭）索引上更改。每个索引分片数量限制在 1024 个。这个限制是一个安全限制，用于防止由于资源分配而意外创建可能破坏集群稳定的索引，可以通过 export ES_JAVA_OPTS=”-Des.index.max_number_of_shards=128” 来修改这个限制</td>
+</tr>
+<tr>
+<td>index.shard.check_on_startup</td>
+<td>是否检查分片</td>
+<td>bool、checksum</td>
+<td>false</td>
+<td>分片在打开之前是否检查分片是否损坏，当检查到损坏时，它将阻止分片被打开，可选值：<br> false (默认)打开碎片时不检查是否损坏 <br> checksum 只检查物理损坏 <br> true 检查物理和逻辑损坏，相对比较耗CPU与内存。<strong>专家。在大型索引中，检查碎片可能会花费大量时间，不建议开启</strong>。</td>
+</tr>
+<tr>
+<td>index.codec</td>
+<td>数据储存的压缩算法</td>
+<td>string</td>
+<td>LZ4</td>
+<td>数据存储的压缩算法，默认值为 LZ4，可选择值 best_compression ，比 LZ4 可以获得更好的压缩比(即占据较小的磁盘空间，但存储性能比 LZ4 低)。</td>
+</tr>
+<tr>
+<td>index.routing_partition_size</td>
+<td>路由分区数</td>
+<td>int</td>
+<td>1</td>
+<td><strong>默认 1</strong>，只能在创建时设置。这个值必须小于索引，除非 index.number_of_shards 的值也是 1，其路由算法为：(hash(_routing)  +  hash(_id) % index.routing_parttion_size  ) % number_of_shards。如果该值不设置，则路由算法为  hash(_routing) % number_of_shardings，_routing 默认值为 _id。更多 <strong><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.5/mapping-routing-field.html#routing-index-partition" target="_blank" rel="noopener">详情</a></strong></td>
+</tr>
+<tr>
+<td>index.load_fixed_bitset_filters_eagerly</td>
+<td></td>
+<td>bool</td>
+<td>true</td>
+<td>指示缓存的筛选器是否为嵌套查询预加载。(bool)，默认值：true。最重要的一点，过滤器所处理的查询部分不需要计算文档得分。在1.4版本以后，执行嵌套查询时所使用的 bitsets 默认提前加载就好了。这样做可以使查询更快但更耗费内存。可以通过 index.load_fixed_bitset_filters_eagerl 配置项为 false 来禁用提前加载</td>
+</tr>
+</tbody></table>
+<h2 id="动态属性设置（Dynamic-index-settings）"><a href="#动态属性设置（Dynamic-index-settings）" class="headerlink" title="动态属性设置（Dynamic index settings）"></a>动态属性设置（Dynamic index settings）</h2><p>下面是所有动态索引设置的列表，不与任何特定的索引模块相关联:</p>
+<table>
+<thead>
+<tr>
+<th>属性名/参数名</th>
+<th>中文名</th>
+<th>值类型</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>index.number_of_replicas</td>
+<td>副本</td>
+<td>int</td>
+<td>1</td>
+<td>每个分片的副本数量，<strong>默认 1</strong></td>
+</tr>
+<tr>
+<td>index.auto_expand_replicas</td>
+<td>副本是否自动扩展</td>
+<td>bool、string</td>
+<td>false</td>
+<td>副本是否自动扩展，设置为以破折号分隔的下界和上界(例如0-5)，或将all用于上界(例如0-all)。<strong>默认为 false (即禁用)</strong> 。<strong>注意</strong>：自动扩展的副本数量没有考虑任何其他分配规则，比如分片分配感知、过滤或每个节点的分片总数，如果适用的规则阻止分配所有副本，则可能导致集群健康状态变为黄色。</td>
+</tr>
+<tr>
+<td>index.search.idle.after</td>
+<td></td>
+<td>string</td>
+<td>30s (30 秒)</td>
+<td>设置分片多久没有接收过请求，就会被判定为空闲的时间，默认为30秒。</td>
+</tr>
+<tr>
+<td>index.refresh_interval</td>
+<td>刷新频率</td>
+<td>string</td>
+<td>1s (1秒)</td>
+<td>执行刷新操作的频率，该操作使索引的最近更改对搜索可见， 默认为1秒， 可以设置为-1表示禁用刷新。<br> 如果显示不设置该值，那些在至少${index.search.idle.after}秒之前没有收到过搜索请求的分片，将不会收到后台的刷新请求，一直要等这些分片收到搜索才会收到后台的刷新请求，如果当前搜索涉及到操作空闲状态的分片时，刷新操作会被挂起直到下一次后台的刷新操作（1秒之内），此行为旨在在未执行搜索时自动优化默认情况下的批量索引。如果不希望执行此默认逻辑，应当显示的将刷新时间间隔设置为1秒。</td>
+</tr>
+<tr>
+<td>index.max_result_window</td>
+<td></td>
+<td>int</td>
+<td>10000</td>
+<td>控制分页搜索总记录数，from + size 的大小不能超过该值，默认为10000。防止占用过高的内存</td>
+</tr>
+<tr>
+<td>index.max_inner_result_window</td>
+<td></td>
+<td>int</td>
+<td>100</td>
+<td>从from+ size的最大值，用于控制top aggregations（顶部聚合），默认为100。内部命中和顶部命中聚合占用堆内存，并且时间与    from + size 成正比，防止占用过高的内存。</td>
+</tr>
+<tr>
+<td>index.max_rescore_window</td>
+<td></td>
+<td>int</td>
+<td>10000</td>
+<td>设置索引的 rescore 请求的 window_size 的最大值， 默认为与 index.max_result_window 的值相同，默认值为 10000，防止占用过高的内存。</td>
+</tr>
+<tr>
+<td>index.max_docvalue_fields_search</td>
+<td></td>
+<td>int</td>
+<td>100</td>
+<td>查询中允许的最多 docvalue_fields 数量，默认为 100。doc_value 字段的查询成本很高，因为它们可能会导致对每个字段和每个文档执行搜索。</td>
+</tr>
+<tr>
+<td>index.max_script_fields</td>
+<td></td>
+<td>int</td>
+<td>32</td>
+<td>查询中允许的最多 script_fields 的数量， 默认为32。</td>
+</tr>
+<tr>
+<td>index.max_ngram_diff</td>
+<td></td>
+<td>int</td>
+<td>1</td>
+<td>NGramTokenizer 和 NGramTokenFilter 的 min_gram 和 max_gram 之间允许的最大差异值，默认为 1。</td>
+</tr>
+<tr>
+<td>index.max_shingle_diff</td>
+<td></td>
+<td>int</td>
+<td>3</td>
+<td>对于 ShingleTokenFilter, max_shingle_size 和 min_shingle_size 之间允许的最大差异。默认为 3。</td>
+</tr>
+<tr>
+<td>index.blocks.read_only</td>
+<td></td>
+<td>bool</td>
+<td></td>
+<td>设置为 true 使索引和索引元数据只读，设置为 false 允许写和元数据更改。</td>
+</tr>
+<tr>
+<td>index.blocks.read_only_allow_delete</td>
+<td></td>
+<td>bool</td>
+<td></td>
+<td>控制索引及其元数据在只读状态下，是否允许执行删除，设置 true 表示允许删除，false 不允许</td>
+</tr>
+<tr>
+<td>index.blocks.read</td>
+<td></td>
+<td>bool</td>
+<td></td>
+<td>是否禁用对索引数据的读操作</td>
+</tr>
+<tr>
+<td>index.blocks.write</td>
+<td></td>
+<td>bool</td>
+<td></td>
+<td>是否禁用对索引的数据写操作。设置为 true 可禁用针对索引的数据写操作。与 read_only 不同，此设置不影响元数据。例如，可以用写块(blocks.write)关闭索引，但不能用 read_only 块关闭索引。</td>
+</tr>
+<tr>
+<td>index.blocks.metadata</td>
+<td></td>
+<td>bool</td>
+<td></td>
+<td>是否禁用对索引元数据的读写。设置为true可禁用索引元数据的读写。</td>
+</tr>
+<tr>
+<td>index.max_refresh_listeners</td>
+<td></td>
+<td></td>
+<td></td>
+<td>索引的每个分片上当刷新索引时最大的可用监听器数量。这些侦听器用于实现 refresh=wait_for。</td>
+</tr>
+<tr>
+<td>index.analyze.max_token_count</td>
+<td></td>
+<td>int</td>
+<td>10000</td>
+<td>使用_analyze API可以生成的最大词项数， 默认为10000</td>
+</tr>
+<tr>
+<td>index.highlight.max_analyzed_offset</td>
+<td></td>
+<td>int</td>
+<td>10000</td>
+<td>highlight(高亮) 请求可被分析的最大字符数，此设置仅在 highlight 请求针对没有偏移量或 term vector 的索引文本时才会生效， 默认为 1000000。</td>
+</tr>
+<tr>
+<td>index.max_terms_count</td>
+<td></td>
+<td>int</td>
+<td>65536</td>
+<td>可在 term 查询中使用的最大 term 数，默认值为 65536。</td>
+</tr>
+<tr>
+<td>index.max_regex_length</td>
+<td></td>
+<td>int</td>
+<td>1000</td>
+<td>可在 Regexp 查询（正则查询）中使用的正则表达式的最大长度。默认为 1000。</td>
+</tr>
+<tr>
+<td>index.routing.allocation.enable</td>
+<td>控制索引的分片分配 <a href="https://cloud.tencent.com/developer/article/1361266" target="_blank" rel="noopener">参考</a></td>
+<td>all、primaries、new_primaries、none</td>
+<td>all</td>
+<td>Allocation机制，其主要解决的是如何将索引在ES集群中在哪些节点上分配分片(例如在Node1是创建的主分片，在其他节点上创建复制分片)。举个例子，如果集群中新增加了一个节点，集群的节点由原来的3个变成了4 可选值: <br> all 所有类型的分片都可以重新分配，默认。<br> primaries 只允许分配主分片。<br> new_primaries 只允许分配新创建的主分片 <br> none 所有的分片都不允许分配。</td>
+</tr>
+<tr>
+<td>index.routing.rebalance.enable</td>
+<td>索引的分片重新平衡机制 <a href="https://www.jianshu.com/p/210465322e18" target="_blank" rel="noopener">参考</a></td>
+<td>all、primaries、replicas、none</td>
+<td>all</td>
+<td>all 是可以对所有的分片进行平衡；primaries 表示只能对主分片进行平衡；replicas 表示只能对副本进行平衡；none 表示对任何分片都不能平衡，也就是禁用了平衡功能。该值一般不需要修改</td>
+</tr>
+<tr>
+<td>index.gc_deletes</td>
+<td></td>
+<td>string</td>
+<td>60s (60秒)</td>
+<td>文档删除后（删除后版本号）还可以存活的周期，默认为 60s。</td>
+</tr>
+<tr>
+<td>index.default_pipeline</td>
+<td></td>
+<td></td>
+<td></td>
+<td>默认管道聚合器，设置此索引的默认接收节点管道（The default ingest node pipeline），如果设置了默认管道但管道不存在，此索引请求将失败。可以使用pipeline参数覆盖默认值，名为“_none”的特殊pipeline不执行摄取管道。</td>
+</tr>
+<tr>
+<td>index.required_pipeline</td>
+<td></td>
+<td></td>
+<td></td>
+<td>必要管道聚合器，此索引所需的摄取节点管道。如果设置了所需的管道且管道不存在，则索引请求将失败。无法使用管道参数覆盖所需的管道。<strong>不能同时设置默认管道和必需管道</strong>。特殊管道名称_none表示不会运行摄取管道。</td>
+</tr>
+</tbody></table>
+<h2 id="其它可在-settings-设置的属性"><a href="#其它可在-settings-设置的属性" class="headerlink" title="其它可在 settings 设置的属性"></a>其它可在 settings 设置的属性</h2><h4 id="Analysis（分词器）"><a href="#Analysis（分词器）" class="headerlink" title="Analysis（分词器）"></a>Analysis（分词器）</h4><p>用于定义分析程序、令牌器、令牌过滤器和字符过滤器的设置，使用自定义分词器时，需要在 settings 里面设置</p>
+<h4 id="Index-shard-allocation"><a href="#Index-shard-allocation" class="headerlink" title="Index shard allocation"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.5/index-modules-allocation.html" target="_blank" rel="noopener">Index shard allocation</a></h4><p>控制将分片分配到节点的位置、时间和方式。</p>
+<h4 id="Mapping"><a href="#Mapping" class="headerlink" title="Mapping"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.5/index-modules.html#_settings_in_other_index_modules" target="_blank" rel="noopener">Mapping</a></h4><p>为索引启用或禁用动态映射。</p>
+<h4 id="Merging"><a href="#Merging" class="headerlink" title="Merging"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.5/index-modules-merge.html" target="_blank" rel="noopener">Merging</a></h4><p>控制如何通过后台合并进程合并分片。</p>
+<h4 id="Similarities"><a href="#Similarities" class="headerlink" title="Similarities"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.5/index-modules-similarity.html" target="_blank" rel="noopener">Similarities</a></h4><p>配置自定义相似度设置，以自定义搜索结果的评分方式。</p>
+<h4 id="Slowlog"><a href="#Slowlog" class="headerlink" title="Slowlog"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.5/index-modules-slowlog.html" target="_blank" rel="noopener">Slowlog</a></h4><p>控制记录查询和获取请求的速度。</p>
+<h4 id="Store"><a href="#Store" class="headerlink" title="Store"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.5/index-modules-store.html" target="_blank" rel="noopener">Store</a></h4><p>配置用于访问碎片数据的文件系统的类型。</p>
+<h4 id="Translog"><a href="#Translog" class="headerlink" title="Translog"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.5/index-modules-translog.html" target="_blank" rel="noopener">Translog</a></h4><p>控制事务日志和后台刷新操作。</p>
+<h4 id="History-retention"><a href="#History-retention" class="headerlink" title="History retention"></a><a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.5/index-modules-history-retention.html" target="_blank" rel="noopener">History retention</a></h4><p>在索引中保留操作历史的控制。</p>
+<h2 id="X-Pack-index-settings-最后一行"><a href="#X-Pack-index-settings-最后一行" class="headerlink" title="X-Pack index settings 最后一行"></a>X-Pack index settings <a href="https://www.elastic.co/guide/en/elasticsearch/reference/7.5/index-modules.html#_settings_in_other_index_modules" target="_blank" rel="noopener">最后一行</a></h2>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/nFreeMason">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/jingjie.github.io/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/jingjie.github.io/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

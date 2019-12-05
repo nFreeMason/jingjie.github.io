@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="专注于 MySQL、PHP、Elasticsearch、LNMP、Redis">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/jingjie.github.io/img/favicon.ico">
+
+    <title>
+        
+        字段类型及属性 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/jingjie.github.io/css/aircloud.css">
+    <link rel="stylesheet" href="/jingjie.github.io/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/jingjie.github.io/images/tong.jpg" />
+        </div>
+        <div class="name">
+            <i>静节</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/jingjie.github.io/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/jingjie.github.io/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、基本类型"><span class="toc-text">1、基本类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1、字符串类型"><span class="toc-text">1-1、字符串类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-1、text-详情"><span class="toc-text">1-1-1、text 详情</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#可选参数"><span class="toc-text">可选参数</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2、keyword"><span class="toc-text">1-1-2、keyword</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#支持参数"><span class="toc-text">支持参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2、-数字-Numeric"><span class="toc-text">1-2、 数字 (Numeric)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的参数"><span class="toc-text">支持的参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3、日期-date"><span class="toc-text">1-3、日期 (date)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的参数-1"><span class="toc-text">支持的参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3、日期纳秒-date-nanos"><span class="toc-text">1-3、日期纳秒 (date_nanos)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4、布尔-boolean"><span class="toc-text">1-4、布尔 (boolean)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的参数-2"><span class="toc-text">支持的参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5、二进制-binary"><span class="toc-text">1-5、二进制 (binary)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6、范围-range"><span class="toc-text">1-6、范围 (range)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的参数-3"><span class="toc-text">支持的参数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、复杂类型"><span class="toc-text">2、复杂类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1、对象-object"><span class="toc-text">2-1、对象 (object)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的参数-4"><span class="toc-text">支持的参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2、嵌套对象-nested"><span class="toc-text">2-2、嵌套对象 (nested)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、空间-地址位置-GEO"><span class="toc-text">3、空间/地址位置 (GEO)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1、Geo-point"><span class="toc-text">3-1、Geo-point</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的参数-5"><span class="toc-text">支持的参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2、Geo-shape"><span class="toc-text">3-2、Geo-shape</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、特别类型"><span class="toc-text">4、特别类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1、IP"><span class="toc-text">4-1、IP</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的参数-6"><span class="toc-text">支持的参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2、完成补全-推荐-Completion"><span class="toc-text">4-2、完成补全/推荐 (Completion)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3、Token-count"><span class="toc-text">4-3、Token_count</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的参数-7"><span class="toc-text">支持的参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4、mapper-murmur3"><span class="toc-text">4-4、mapper-murmur3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5、mapper-annotated-text"><span class="toc-text">4-5、mapper-annotated-text</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-6、Join"><span class="toc-text">4-6、Join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-7、Rank-feature"><span class="toc-text">4-7、Rank_feature</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-8、Dense-vector"><span class="toc-text">4-8、Dense vector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-9、查询期间的即时搜索-Search-as-you-type"><span class="toc-text">4-9、查询期间的即时搜索 (Search-as-you-type)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的参数-8"><span class="toc-text">支持的参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-10、别名-Alias"><span class="toc-text">4-10、别名 (Alias)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-11、Flattened"><span class="toc-text">4-11、Flattened</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#支持的参数-9"><span class="toc-text">支持的参数</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-12、Shape"><span class="toc-text">4-12、Shape</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、数组-array"><span class="toc-text">5、数组 (array)</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        字段类型及属性
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-12-05 11:22:41</span></span>
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p>版本：&gt;= 7.0</p>
+<h2 id="1、基本类型"><a href="#1、基本类型" class="headerlink" title="1、基本类型"></a>1、基本类型</h2><h3 id="1-1、字符串类型"><a href="#1-1、字符串类型" class="headerlink" title="1-1、字符串类型"></a>1-1、字符串类型</h3><h4 id="1-1-1、text-详情"><a href="#1-1-1、text-详情" class="headerlink" title="1-1-1、text 详情"></a>1-1-1、text <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/text.html#text-params" target="_blank" rel="noopener">详情</a></h4><blockquote>
+<p>1、支持分词、全文检索、模糊、精确… 等查询，<strong>不建议使用 text 聚合、排序</strong></p>
+</blockquote>
+<blockquote>
+<p>2、text 类型的最大支持长度无限制，适合大字段储存</p>
+</blockquote>
+<blockquote>
+<p>3、es 默认分词为 standard 分词器对文本进行分词索引</p>
+</blockquote>
+<h5 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h5><p>analyzer</p>
+<blockquote>
+<p>分析器，它应该用于分析的字符串字段，无论是在索引时还是在搜索时(除非被search_analyzer覆盖)。默认索引分析器或标准分析器。</p>
+</blockquote>
+<p>boost</p>
+<blockquote>
+<p>增加权重，默认为 1.0，当搜索时指定 boost 权重，boost 越大结果越靠前</p>
+</blockquote>
+<p>eager_global_ordinals</p>
+<blockquote>
+<p>全局序号加载，经常用于聚合的字段，启用些功能一个不错的主意。es 不知道 哪些 fields 将 用于/不用于 term aggregation，因此 全局序数 在需要时才加载进内存，但，可以在mapping type上，定义 eager_global_ordinals==true，这样，refresh 时就会加载 全局序数</p>
+</blockquote>
+<p>fielddata</p>
+<blockquote>
+<p>字段可以使用内存中的 fielddata 进行排序、聚合或脚本编制吗? 接受真或假(默认)。如果要对分词的 field 执行聚合操作，必须将fielddata设置为true，默认 false，加载FieldData是开销很大的操作，一旦它被加载后，就会在整个段的生命周期中保留在内存中</p>
+</blockquote>
+<p>fielddata_frequency_filter <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/fielddata.html#field-data-filtering" target="_blank" rel="noopener">详情</a></p>
+<blockquote>
+<p>允许决定在启用 fielddata 时在内存中加载哪些值的专项设置。默认情况下，加载所有值。</p>
+</blockquote>
+<p>fields <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-fields.html" target="_blank" rel="noopener">详情</a></p>
+<blockquote>
+<p>多字段，允许为不同的目的以多种方式索引相同的字符串值，例如一个字段用于搜索，一个多字段用于排序和聚合，或者由不同的分析程序分析相同的字符串值。</p>
+</blockquote>
+<p>index</p>
+<blockquote>
+<p>字段是否可以被索引，默认 true</p>
+</blockquote>
+<p>index_options</p>
+<blockquote>
+<ul>
+<li>四种不同级别的 index options 配置，可以控制倒排索引记录的内容<ul>
+<li>docs – 记录 doc id（只索引文档编号）</li>
+<li>freqs – 记录 doc id 和 term frequencies （索引文档编号和词频率）</li>
+<li>positions – 记录 doc id / term position（位置） / term frequencies（词频）</li>
+<li>offsets – 记录 doc id / term frequencies / term position / character offsets（偏移量） （索引文档编号，词频率，词偏移量（开始和结束位置）和词位置（序号））</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<ul>
+<li>text 类型默认记录 positions，其它默认 docs</li>
+<li>记录内容越多，占用储存越大</li>
+</ul>
+<p>index_prefixes</p>
+<blockquote>
+<p>如果启用，2到5个字符之间的术语前缀将被索引到一个单独的字段中。<br> 这使得前缀搜索能够以更大的索引为代价更有效地运行。</p>
+</blockquote>
+<p>index_phrases</p>
+<blockquote>
+</blockquote>
+<p>norms</p>
+<blockquote>
+<p>在对查询进行评分时是否应该考虑字段长度。<br> 接受真(默认)或假。</p>
+</blockquote>
+<p>search_analyzer</p>
+<blockquote>
+<p>在分析字段的搜索时使用的分析器。<br> 默认为分析器设置。</p>
+</blockquote>
+<p>search_quote_analyzer</p>
+<blockquote>
+<p>当遇到短语时，应该在搜索时使用的分析器。<br> 默认设置为search_analyzer。</p>
+</blockquote>
+<p>similarity</p>
+<blockquote>
+<p>应该使用哪种评分算法或相似度。<br> 默认为BM25。</p>
+</blockquote>
+<p>term_vector</p>
+<blockquote>
+<p>是否应该存储分析字段的项向量。<br> 默认为没有。</p>
+</blockquote>
+<h4 id="1-1-2、keyword"><a href="#1-1-2、keyword" class="headerlink" title="1-1-2、keyword"></a>1-1-2、<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/keyword.html" target="_blank" rel="noopener">keyword</a></h4><blockquote>
+<p>1、不进行分词，直接索引，支持模糊、精确、聚合、排序等</p>
+</blockquote>
+<blockquote>
+<p>2、支持的最大长度为 32766 个 UTF-8 字符，可以通过 ignore_above 指定长度，超过部分无法被索引（类型 MySQL 的前缀索引）</p>
+</blockquote>
+<h5 id="支持参数"><a href="#支持参数" class="headerlink" title="支持参数"></a>支持参数</h5><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>默认值</th>
+<th>详情连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boost</td>
+<td>(float) 1.0</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-boost.html" target="_blank" rel="noopener">boost</a>(默认 1.0)</td>
+</tr>
+<tr>
+<td>eager_global_ordinals</td>
+<td>(bool) false</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/eager-global-ordinals.html" target="_blank" rel="noopener">eager_global_ordinals</a>(默认 false)</td>
+</tr>
+<tr>
+<td>fields</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/multi-fields.html" target="_blank" rel="noopener">fields</a></td>
+</tr>
+<tr>
+<td>ignore_above</td>
+<td>(int) 2147483647</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/ignore-above.html" target="_blank" rel="noopener">ignore_above</a>(默认值为 2147483647)</td>
+</tr>
+<tr>
+<td>index</td>
+<td>(bool) true</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-index.html" target="_blank" rel="noopener">index</a>(默认 true)</td>
+</tr>
+<tr>
+<td>index_options</td>
+<td>(docs/freqs/positions/offsets) docs</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-index.html" target="_blank" rel="noopener">index_options</a>(默认 docs)</td>
+</tr>
+<tr>
+<td>norms</td>
+<td>(bool) false</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/norms.html" target="_blank" rel="noopener">norms</a>(默认 false)</td>
+</tr>
+<tr>
+<td>null_value</td>
+<td>null</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/null-value.html" target="_blank" rel="noopener">null_value</a>(默认关闭)</td>
+</tr>
+<tr>
+<td>store</td>
+<td>(bool) false</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-store.html" target="_blank" rel="noopener">store</a>(默认 false)</td>
+</tr>
+<tr>
+<td>similarity</td>
+<td>BM25</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/similarity.html" target="_blank" rel="noopener">similarity</a>(默认 BM25)</td>
+</tr>
+<tr>
+<td>normalizer</td>
+<td>null</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/similarity.html" target="_blank" rel="noopener">normalizer</a>(默认 null)</td>
+</tr>
+</tbody></table>
+<h3 id="1-2、-数字-Numeric"><a href="#1-2、-数字-Numeric" class="headerlink" title="1-2、 数字 (Numeric)"></a>1-2、 数字 (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html" target="_blank" rel="noopener">Numeric</a>)</h3><blockquote>
+<p>long, integer, short, byte, double, float, half_float, scaled_float</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>type 值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>long</td>
+<td>8 字节，一个有符号的64位整数，最小值-2^63，最大值2^63-1。</td>
+</tr>
+<tr>
+<td>integer</td>
+<td>4 字节，一个有符号的32位整数，最小值为-2^31，最大值为2^31-1。</td>
+</tr>
+<tr>
+<td>short</td>
+<td>一个有符号的16位整数，最小值为-32,768，最大值为32,767。</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>一个有符号的8位整数，最小值为-128，最大值为127。</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度64位IEEE 754浮点数，限制为有限值。</td>
+</tr>
+<tr>
+<td>float</td>
+<td>一种32位的单精度IEEE 754浮点数，限制为有限值。</td>
+</tr>
+<tr>
+<td>half_float</td>
+<td>半精度的16位IEEE 754浮点数，限制为有限值。</td>
+</tr>
+<tr>
+<td>scaled_float</td>
+<td>一个浮点数，由一个固定的双标度因子支持。scaling_factor = 100</td>
+</tr>
+</tbody></table>
+<h4 id="支持的参数"><a href="#支持的参数" class="headerlink" title="支持的参数"></a>支持的参数</h4><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>默认值</th>
+<th>详情连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>coerce</td>
+<td>(bool) true</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/coerce.html" target="_blank" rel="noopener">coerce</a></td>
+</tr>
+<tr>
+<td>boost</td>
+<td>(int/float) 1.0</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/boost.html" target="_blank" rel="noopener">boost</a></td>
+</tr>
+<tr>
+<td>doc_values</td>
+<td>(bool) true</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/doc_values.html" target="_blank" rel="noopener">doc_values</a></td>
+</tr>
+<tr>
+<td>ignore_malformed</td>
+<td>(bool) false</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/ignore-malformed.html" target="_blank" rel="noopener">ignore_malformed</a></td>
+</tr>
+<tr>
+<td>index</td>
+<td>(bool) true</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html" target="_blank" rel="noopener">index</a></td>
+</tr>
+<tr>
+<td>null_value</td>
+<td>null</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/null_value.html" target="_blank" rel="noopener">null_value</a></td>
+</tr>
+<tr>
+<td>store</td>
+<td>(bool) false</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/store.html" target="_blank" rel="noopener">store</a></td>
+</tr>
+<tr>
+<td>scaled_float</td>
+<td>接收一个附加参数 scaling_factor</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/number.html" target="_blank" rel="noopener">scaled_float</a></td>
+</tr>
+<tr>
+<td>scaling_factor</td>
+<td>(int)</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/number.html" target="_blank" rel="noopener">scaling_factor</a></td>
+</tr>
+</tbody></table>
+<h3 id="1-3、日期-date"><a href="#1-3、日期-date" class="headerlink" title="1-3、日期 (date)"></a>1-3、日期 (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/date.html" target="_blank" rel="noopener">date</a>)</h3><blockquote>
+<p>1、JSON没有日期数据类型，所以Elasticsearch中的日期可以是: 包含格式化日期的字符串，例如“2015-01-01”或“2015/01/01 12:10:30”。</p>
+</blockquote>
+<blockquote>
+<p>2、排序默认使用毫秒为单位</p>
+</blockquote>
+<h4 id="支持的参数-1"><a href="#支持的参数-1" class="headerlink" title="支持的参数"></a>支持的参数</h4><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>默认值</th>
+<th>详情连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boost</td>
+<td>(int/float) 1.0</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/boost.html" target="_blank" rel="noopener">boost</a></td>
+</tr>
+<tr>
+<td>doc_values</td>
+<td>(bool) true</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/doc_values.html" target="_blank" rel="noopener">doc_values</a></td>
+</tr>
+<tr>
+<td>format</td>
+<td>(string) strict_date_optional_time、epoch_millis</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-date-format.html" target="_blank" rel="noopener">doc_values</a></td>
+</tr>
+<tr>
+<td>locale</td>
+<td>根据环境语言</td>
+<td></td>
+</tr>
+<tr>
+<td>ignore_malformed</td>
+<td>(bool) false</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/ignore-malformed.html" target="_blank" rel="noopener">ignore_malformed</a></td>
+</tr>
+<tr>
+<td>index</td>
+<td>(bool) true</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html" target="_blank" rel="noopener">index</a></td>
+</tr>
+<tr>
+<td>null_value</td>
+<td>null</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/null_value.html" target="_blank" rel="noopener">null_value</a></td>
+</tr>
+<tr>
+<td>store</td>
+<td>(bool) false</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/store.html" target="_blank" rel="noopener">store</a></td>
+</tr>
+</tbody></table>
+<h3 id="1-3、日期纳秒-date-nanos"><a href="#1-3、日期纳秒-date-nanos" class="headerlink" title="1-3、日期纳秒 (date_nanos)"></a>1-3、日期纳秒 (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/date_nanos.html" target="_blank" rel="noopener">date_nanos</a>)</h3><blockquote>
+<p>1、此数据类型是对日期数据类型的补充。然而，两者之间有一个重要的区别。现有的日期数据类型以毫秒分辨率存储日期。date_nanos数据类型以毫微秒的分辨率存储日期，这限制了它的日期范围(大约从1970年到2262年)，因为自epoch以来，日期仍然以长毫微秒的形式存储</p>
+</blockquote>
+<blockquote>
+<p>2、您还可以指定由||分隔的多个日期格式。可以使用与date字段相同的映射参数。</p>
+</blockquote>
+<blockquote>
+<p>3、即使在使用date_nanos字段时，聚合的分辨率仍然是毫秒级的。</p>
+</blockquote>
+<h3 id="1-4、布尔-boolean"><a href="#1-4、布尔-boolean" class="headerlink" title="1-4、布尔 (boolean)"></a>1-4、布尔 (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/boolean.html" target="_blank" rel="noopener">boolean</a>)</h3><blockquote>
+<p>布尔字段接受JSON真值和假值，但也可以接受解释为真或假的字符串:</p>
+</blockquote>
+<h4 id="支持的参数-2"><a href="#支持的参数-2" class="headerlink" title="支持的参数"></a>支持的参数</h4><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>默认值</th>
+<th>详情连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boost</td>
+<td>(int/float) 1.0</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/boost.html" target="_blank" rel="noopener">boost</a></td>
+</tr>
+<tr>
+<td>doc_values</td>
+<td>(bool) true</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/doc_values.html" target="_blank" rel="noopener">doc_values</a></td>
+</tr>
+<tr>
+<td>index</td>
+<td>(bool) true</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html" target="_blank" rel="noopener">index</a></td>
+</tr>
+<tr>
+<td>null_value</td>
+<td>null</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/null_value.html" target="_blank" rel="noopener">null_value</a></td>
+</tr>
+<tr>
+<td>store</td>
+<td>(bool) false</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/store.html" target="_blank" rel="noopener">store</a></td>
+</tr>
+</tbody></table>
+<h3 id="1-5、二进制-binary"><a href="#1-5、二进制-binary" class="headerlink" title="1-5、二进制 (binary)"></a>1-5、二进制 (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/binary.html" target="_blank" rel="noopener">binary</a>)</h3><blockquote>
+<p>二进制类型接受二进制值作为Base64编码的字符串。<br>  该字段默认不存储，也不能搜索:</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>默认值</th>
+<th>详情连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>doc_values</td>
+<td>(bool) false</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/doc_values.html" target="_blank" rel="noopener">doc_values</a></td>
+</tr>
+<tr>
+<td>store</td>
+<td>(bool) false</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/store.html" target="_blank" rel="noopener">store</a></td>
+</tr>
+</tbody></table>
+<h3 id="1-6、范围-range"><a href="#1-6、范围-range" class="headerlink" title="1-6、范围 (range)"></a>1-6、范围 (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/range.html" target="_blank" rel="noopener">range</a>)</h3><table>
+<thead>
+<tr>
+<th>TYPE</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>integer_range</td>
+<td>一组32位有符号整数，最小值为-2^31，最大值为2^31-1。</td>
+</tr>
+<tr>
+<td>float_range</td>
+<td>单精度32位IEEE 754浮点值的范围。</td>
+</tr>
+<tr>
+<td>long_range</td>
+<td>一组有符号的64位整数，最小值为-2^63，最大值为2^63-1。</td>
+</tr>
+<tr>
+<td>double_range</td>
+<td>A range of double-precision 64-bit IEEE 754 floating point values.</td>
+</tr>
+<tr>
+<td>date_range</td>
+<td>以无符号64位整数形式表示的自系统历元以来经过的日期值范围。</td>
+</tr>
+<tr>
+<td>ip_range</td>
+<td>支持IPv4或IPv6(或混合)地址的ip值范围。</td>
+</tr>
+</tbody></table>
+<h4 id="支持的参数-3"><a href="#支持的参数-3" class="headerlink" title="支持的参数"></a>支持的参数</h4><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>默认值</th>
+<th>详情连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>coerce</td>
+<td>(bool) true</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/coerce.html" target="_blank" rel="noopener">coerce</a></td>
+</tr>
+<tr>
+<td>boost</td>
+<td>(int/float) 1.0</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/boost.html" target="_blank" rel="noopener">boost</a></td>
+</tr>
+<tr>
+<td>index</td>
+<td>(bool) true</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html" target="_blank" rel="noopener">index</a></td>
+</tr>
+<tr>
+<td>store</td>
+<td>(bool) false</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/store.html" target="_blank" rel="noopener">store</a></td>
+</tr>
+</tbody></table>
+<h2 id="2、复杂类型"><a href="#2、复杂类型" class="headerlink" title="2、复杂类型"></a>2、复杂类型</h2><h3 id="2-1、对象-object"><a href="#2-1、对象-object" class="headerlink" title="2-1、对象 (object)"></a>2-1、对象 (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/object.html" target="_blank" rel="noopener">object</a>)</h3><blockquote>
+<p>1、内部字段可以在查询、聚合等中引用，使用点符号: root.desk</p>
+</blockquote>
+<blockquote>
+<p>2、如果需要索引对象数组而不是单个对象，请首先读取嵌套对象（nested）。</p>
+</blockquote>
+<blockquote>
+<p>3、对象，用于单个JSON对象</p>
+</blockquote>
+<h4 id="支持的参数-4"><a href="#支持的参数-4" class="headerlink" title="支持的参数"></a>支持的参数</h4><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>默认值</th>
+<th>描述</th>
+<th>详情连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dynamic</td>
+<td>(true/false/strict) true</td>
+<td>是否将新字段动态添加到表中 <br> 1、true 允许动态添加到表中，并且添加索引 <br> 2、false 允许动态添加到表中，不添加索引 <br> 3、strict 禁止动态添加字段</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/coerce.html" target="_blank" rel="noopener">dynamic</a>)</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td>(bool) true</td>
+<td>对象字段的 JSON 值是被解析和索引还是被忽略</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/enabled.html" target="_blank" rel="noopener">enabled</a></td>
+</tr>
+<tr>
+<td>properties</td>
+<td></td>
+<td>对象中的字段，可以是任何数据类型，包括对象。可以向现有对象添加新属性。</td>
+<td><a href="[enabled](https://www.elastic.co/guide/en/elasticsearch/reference/current/properties.html)">properties</a></td>
+</tr>
+</tbody></table>
+<h3 id="2-2、嵌套对象-nested"><a href="#2-2、嵌套对象-nested" class="headerlink" title="2-2、嵌套对象 (nested)"></a>2-2、嵌套对象 (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/nested.html" target="_blank" rel="noopener">nested</a>)</h3><blockquote>
+<p>1、嵌套的JSON对象数组</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>默认值</th>
+<th>描述</th>
+<th>详情连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dynamic</td>
+<td>(true/false/strict) true</td>
+<td>是否将新字段动态添加到表中 <br> 1、true 允许动态添加到表中，并且添加索引 <br> 2、false 允许动态添加到表中，不添加索引 <br> 3、strict 禁止动态添加字段</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/coerce.html" target="_blank" rel="noopener">dynamic</a>)</td>
+</tr>
+<tr>
+<td>properties</td>
+<td></td>
+<td>对象中的字段，可以是任何数据类型，包括对象。可以向现有对象添加新属性。</td>
+<td><a href="[enabled](https://www.elastic.co/guide/en/elasticsearch/reference/current/properties.html)">properties</a></td>
+</tr>
+</tbody></table>
+<h2 id="3、空间-地址位置-GEO"><a href="#3、空间-地址位置-GEO" class="headerlink" title="3、空间/地址位置 (GEO)"></a>3、空间/地址位置 (GEO)</h2><h3 id="3-1、Geo-point"><a href="#3-1、Geo-point" class="headerlink" title="3-1、Geo-point"></a>3-1、<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-point.html" target="_blank" rel="noopener">Geo-point</a></h3><blockquote>
+<p>1、用于lat/lon点的geo_point</p>
+</blockquote>
+<blockquote>
+<p>2、请注意，字符串地理点的顺序是lat,lon，而数组地理点的顺序是相反的:lon,lat。</p>
+</blockquote>
+<blockquote>
+<p>3、只使用前12个字符，因此在geohash中指定超过12个字符并不会增加精度</p>
+</blockquote>
+<h4 id="支持的参数-5"><a href="#支持的参数-5" class="headerlink" title="支持的参数"></a>支持的参数</h4><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>默认值</th>
+<th>描述</th>
+<th>详情连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ignore_malformed</td>
+<td>(bool) false</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/ignore-malformed.html" target="_blank" rel="noopener">ignore_malformed</a></td>
+</tr>
+<tr>
+<td>null_value</td>
+<td>null</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/null_value.html" target="_blank" rel="noopener">null_value</a></td>
+</tr>
+<tr>
+<td>ignore_z_value</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="3-2、Geo-shape"><a href="#3-2、Geo-shape" class="headerlink" title="3-2、Geo-shape"></a>3-2、<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-shape.html" target="_blank" rel="noopener">Geo-shape</a></h3><blockquote>
+<p>1、geo_shape用于复杂的形状，如多边形</p>
+</blockquote>
+<h2 id="4、特别类型"><a href="#4、特别类型" class="headerlink" title="4、特别类型"></a>4、特别类型</h2><blockquote>
+<p>对对应的类型做了特别处理的</p>
+</blockquote>
+<h3 id="4-1、IP"><a href="#4-1、IP" class="headerlink" title="4-1、IP"></a>4-1、<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/ip.html" target="_blank" rel="noopener">IP</a></h3><blockquote>
+<p>用于IPv4和IPv6地址的ip</p>
+</blockquote>
+<blockquote>
+<p>您还可以使用ip_range数据类型在单个字段中存储ip范围。</p>
+</blockquote>
+<h4 id="支持的参数-6"><a href="#支持的参数-6" class="headerlink" title="支持的参数"></a>支持的参数</h4><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>默认值</th>
+<th>描述</th>
+<th>详情连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boost</td>
+<td>(int|float) 1.0</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/boost.html" target="_blank" rel="noopener">boost</a></td>
+</tr>
+<tr>
+<td>doc_values</td>
+<td>(bool) true</td>
+<td>true 加快聚合、排序、脚本编写速度。false 节约空间</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/doc-values.html" target="_blank" rel="noopener">doc_values</a>(默认 true)</td>
+</tr>
+<tr>
+<td>index</td>
+<td>(bool) true</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html" target="_blank" rel="noopener">index</a></td>
+</tr>
+<tr>
+<td>null_value</td>
+<td>null</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/null_value.html" target="_blank" rel="noopener">null_value</a></td>
+</tr>
+<tr>
+<td>store</td>
+<td>(bool) false</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/store.html" target="_blank" rel="noopener">store</a></td>
+</tr>
+</tbody></table>
+<h3 id="4-2、完成补全-推荐-Completion"><a href="#4-2、完成补全-推荐-Completion" class="headerlink" title="4-2、完成补全/推荐 (Completion)"></a>4-2、完成补全/推荐 (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-suggesters.html" target="_blank" rel="noopener">Completion</a>)</h3><blockquote>
+<p>提供自动完成建议</p>
+</blockquote>
+<h3 id="4-3、Token-count"><a href="#4-3、Token-count" class="headerlink" title="4-3、Token_count"></a>4-3、<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/token-count.html" target="_blank" rel="noopener">Token_count</a></h3><blockquote>
+<p>token_count用于计算字符串中的令牌数量</p>
+</blockquote>
+<blockquote>
+<p>用于统计做了标记的字段的index数目，该值会一直增加，不会因为过滤条件而减少。</p>
+</blockquote>
+<h4 id="支持的参数-7"><a href="#支持的参数-7" class="headerlink" title="支持的参数"></a>支持的参数</h4><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>默认值</th>
+<th>描述</th>
+<th>详情连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>analyzer</td>
+<td></td>
+<td>分析器，必需的。请使用没有令牌筛选器的分析器。</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analyzer.html" target="_blank" rel="noopener">analyzer</a></td>
+</tr>
+<tr>
+<td>enable_position_increments</td>
+<td>(bool) true</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>boost</td>
+<td>(int|float) 1.0</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/boost.html" target="_blank" rel="noopener">boost</a></td>
+</tr>
+<tr>
+<td>doc_values</td>
+<td>(bool) true</td>
+<td>true 加快聚合、排序、脚本编写速度。false 节约空间</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/doc-values.html" target="_blank" rel="noopener">doc_values</a>(默认 true)</td>
+</tr>
+<tr>
+<td>index</td>
+<td>(bool) true</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html" target="_blank" rel="noopener">index</a></td>
+</tr>
+<tr>
+<td>null_value</td>
+<td>null</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/null_value.html" target="_blank" rel="noopener">null_value</a></td>
+</tr>
+<tr>
+<td>store</td>
+<td>(bool) false</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/store.html" target="_blank" rel="noopener">store</a></td>
+</tr>
+</tbody></table>
+<h3 id="4-4、mapper-murmur3"><a href="#4-4、mapper-murmur3" class="headerlink" title="4-4、mapper-murmur3"></a>4-4、<a href="https://www.elastic.co/guide/en/elasticsearch/plugins/7.4/mapper-murmur3.html" target="_blank" rel="noopener">mapper-murmur3</a></h3><h3 id="4-5、mapper-annotated-text"><a href="#4-5、mapper-annotated-text" class="headerlink" title="4-5、mapper-annotated-text"></a>4-5、<a href="https://www.elastic.co/guide/en/elasticsearch/plugins/7.4/mapper-annotated-text.html" target="_blank" rel="noopener">mapper-annotated-text</a></h3><h3 id="4-6、Join"><a href="#4-6、Join" class="headerlink" title="4-6、Join"></a>4-6、<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/parent-join.html" target="_blank" rel="noopener">Join</a></h3><blockquote>
+<p>父子文档</p>
+</blockquote>
+<h3 id="4-7、Rank-feature"><a href="#4-7、Rank-feature" class="headerlink" title="4-7、Rank_feature"></a>4-7、<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/rank-feature.html" target="_blank" rel="noopener">Rank_feature</a></h3><blockquote>
+<p>1、来存储特征向量，数据不能为0和负数，查询时只能使用rank_feature query，该字段主要为支持后续机器学习相关功能做准备</p>
+</blockquote>
+<blockquote>
+<p>2、rank_feature字段不支持查询、排序或聚合。<br> 它们只能在rank_feature查询中使用。</p>
+</blockquote>
+<h3 id="4-8、Dense-vector"><a href="#4-8、Dense-vector" class="headerlink" title="4-8、Dense vector"></a>4-8、<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/dense-vector.html" target="_blank" rel="noopener">Dense vector</a></h3><blockquote>
+<p>他的功能是实验性的，在将来的版本中可能会完全改变或删除</p>
+</blockquote>
+<h3 id="4-9、查询期间的即时搜索-Search-as-you-type"><a href="#4-9、查询期间的即时搜索-Search-as-you-type" class="headerlink" title="4-9、查询期间的即时搜索 (Search-as-you-type)"></a>4-9、查询期间的即时搜索 (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html" target="_blank" rel="noopener">Search-as-you-type</a>)</h3><h4 id="支持的参数-8"><a href="#支持的参数-8" class="headerlink" title="支持的参数"></a>支持的参数</h4><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>默认值</th>
+<th>描述</th>
+<th>详情连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>analyzer</td>
+<td></td>
+<td>分析器，它应该用于分析的字符串字段，无论是在索引时还是在搜索时(除非被search_analyzer覆盖)。默认索引分析器或标准分析器。</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analyzer.html" target="_blank" rel="noopener">analyzer</a></td>
+</tr>
+<tr>
+<td>index_options</td>
+<td>(docs/freqs/positions/offsets) positions</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-index.html" target="_blank" rel="noopener">index_options</a>(默认 docs)</td>
+<td></td>
+</tr>
+<tr>
+<td>norms</td>
+<td>(bool) true</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/norms.html" target="_blank" rel="noopener">norms</a></td>
+<td></td>
+</tr>
+<tr>
+<td>store</td>
+<td>(bool) false</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/store.html" target="_blank" rel="noopener">store</a></td>
+</tr>
+<tr>
+<td>search_analyzer</td>
+<td>默认为分析器设置</td>
+<td>在分析字段的搜索时使用的分析器。默认为分析器设置。</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-analyzer.html" target="_blank" rel="noopener">search_analyzer</a></td>
+</tr>
+<tr>
+<td>search_quote_analyzer</td>
+<td>默认设置为search_analyzer</td>
+<td>当遇到短语时，应该在搜索时使用的分析器。默认设置为search_analyzer。</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/analyzer.html#search-quote-analyzer" target="_blank" rel="noopener"></a></td>
+</tr>
+<tr>
+<td>similarity</td>
+<td>BM25</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/similarity.html" target="_blank" rel="noopener">similarity</a></td>
+</tr>
+<tr>
+<td>term_vector</td>
+<td>no</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/term-vector.html" target="_blank" rel="noopener">term_vector</a></td>
+</tr>
+</tbody></table>
+<h3 id="4-10、别名-Alias"><a href="#4-10、别名-Alias" class="headerlink" title="4-10、别名 (Alias)"></a>4-10、别名 (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/alias.html" target="_blank" rel="noopener">Alias</a>)</h3><blockquote>
+<p>1、定义现有字段的别名。</p>
+</blockquote>
+<blockquote>
+<p>2、对于别名的目标有一些限制:<br> 目标必须是一个具体的字段，而不是对象或另一个字段别名。<br> 目标字段必须在创建别名时存在。<br> 如果定义了嵌套对象，则字段别名必须具有与其目标相同的嵌套范围</p>
+</blockquote>
+<h3 id="4-11、Flattened"><a href="#4-11、Flattened" class="headerlink" title="4-11、Flattened"></a>4-11、<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/flattened.html" target="_blank" rel="noopener">Flattened</a></h3><blockquote>
+<p>1、允许将整个JSON 对象作为单个字段建立索引。</p>
+</blockquote>
+<blockquote>
+<p>2、只允许基本查询(term, terms, and terms_set / prefix / range / match and multi_match / query_string and simple_query_string / exists)，不支持数值范围查询或高亮显示。有关这些限制的进一步信息可以在受支持的操作部分中找到。</p>
+</blockquote>
+<h4 id="支持的参数-9"><a href="#支持的参数-9" class="headerlink" title="支持的参数"></a>支持的参数</h4><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>默认值</th>
+<th>描述</th>
+<th>详情连接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>boost</td>
+<td>(float) 1.0</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-boost.html" target="_blank" rel="noopener">boost</a></td>
+</tr>
+<tr>
+<td>depth_limit</td>
+<td>(int) 20</td>
+<td>就嵌套内部对象而言，平坦对象字段允许的最大深度。如果扁平对象字段超过此限制，则会抛出错误。默认为20。</td>
+<td></td>
+</tr>
+<tr>
+<td>eager_global_ordinals</td>
+<td>(bool) false</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/eager-global-ordinals.html" target="_blank" rel="noopener">eager_global_ordinals</a></td>
+</tr>
+<tr>
+<td>doc_values</td>
+<td>(bool) true</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/doc_values.html" target="_blank" rel="noopener">doc_values</a></td>
+</tr>
+<tr>
+<td>ignore_above</td>
+<td></td>
+<td>超过此限制的叶子值将不被索引。默认情况下，没有限制，所有值都将被索引。注意，这个限制适用于扁平对象字段中的叶值，而不是整个字段的长度。</td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/ignore-above.html" target="_blank" rel="noopener">ignore_above</a></td>
+</tr>
+<tr>
+<td>index_options</td>
+<td>(docs/freqs/positions/offsets) docs</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-index.html" target="_blank" rel="noopener">index_options</a>(默认 docs)</td>
+</tr>
+<tr>
+<td>null_value</td>
+<td>null</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/null-value.html" target="_blank" rel="noopener">null_value</a></td>
+</tr>
+<tr>
+<td>similarity</td>
+<td>BM25</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/similarity.html" target="_blank" rel="noopener">similarity</a></td>
+</tr>
+<tr>
+<td>split_queries_on_whitespace</td>
+<td>(bool) false</td>
+<td></td>
+<td><a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/flattened.html" target="_blank" rel="noopener">最后一行</a></td>
+</tr>
+</tbody></table>
+<h3 id="4-12、Shape"><a href="#4-12、Shape" class="headerlink" title="4-12、Shape"></a>4-12、<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/shape.html" target="_blank" rel="noopener">Shape</a></h3><blockquote>
+<p>形状数据类型便于对任意x、y笛卡尔形状(如矩形和多边形)进行索引和搜索。它可用于索引和查询坐标位于二维平面坐标系中的几何图形。</p>
+</blockquote>
+<h2 id="5、数组-array"><a href="#5、数组-array" class="headerlink" title="5、数组 (array)"></a>5、数组 (<a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-types.html" target="_blank" rel="noopener">array</a>)</h2><blockquote>
+<p>在Elasticsearch中，数组不需要专用字段数据类型。<br> 默认情况下，任何字段都可以包含零个或多个值，但是数组中的所有值必须具有相同的数据类型。<br> 看到数组。</p>
+</blockquote>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/nFreeMason">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud" target="_blank" rel="noopener">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/jingjie.github.io/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/jingjie.github.io/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
